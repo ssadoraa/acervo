@@ -9,9 +9,10 @@ function GameList() {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await axios.get("http://localhost:3333/api/games");
+        const response = await axios.get("http://localhost:3333");
         setGames(response.data);
       } catch (err) {
+        console.error("Erro ao conectar com o Node:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -23,14 +24,6 @@ function GameList() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
-  return (
-    <ul>
-      {games.map((game) => (
-        <li key={game.id}>{game.name}</li>
-      ))}
-    </ul>
-  );
 }
 
 export default GameList;
