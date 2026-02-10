@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 import { Book } from '../models/Book';
+import { createBook, deleteBook, getAllBooks, getBookById, updateBook } from '../services/bookService';
 
 // Controller function to get all books
-export const getAllBooks = async (_req: Request, res: Response) => {
+export const getAll = async (_req: Request, res: Response) => {
     try {
-        const books =  await Book.find();
+        const books =  await getAllBooks();
         return res.status(200).json(books);
     } catch (error: any) {
         res.status(500).json({ message: "Error fetching books", error: error.message });
@@ -13,9 +14,9 @@ export const getAllBooks = async (_req: Request, res: Response) => {
 };
 
 // Controller function to get a book by ID
-export const getBookById = async (req: Request, res: Response) => {
+export const getById = async (req: Request, res: Response) => {
     try {
-        const book =  await Book.findById(req.params.id);
+        const book =  await getBookById(req.params.id);
 
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
@@ -28,9 +29,9 @@ export const getBookById = async (req: Request, res: Response) => {
 };
 
 // Controller function to create a new book
-export const createBook = async (req: Request, res: Response) => {
+export const create = async (req: Request, res: Response) => {
     try {
-        const book =  await Book.create(req.body);
+        const book =  await createBook(req.body);
         return res.status(201).json(book);
     } catch (error: any) {
         res.status(400).json({ message: "Error creating book", error: error.message });
@@ -38,9 +39,9 @@ export const createBook = async (req: Request, res: Response) => {
 };
 
 // Controller function to update a book by ID
-export const updateBook = async (req: Request, res: Response) => {
+export const update = async (req: Request, res: Response) => {
     try {
-        const book = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const book = await updateBook(req.params.id, req.body);
 
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
@@ -53,9 +54,9 @@ export const updateBook = async (req: Request, res: Response) => {
 };
 
 // Controller function to delete a book by ID
-export const deleteBook = async (req: Request, res: Response) => {
+export const deleteById = async (req: Request, res: Response) => {
     try {
-        const book = await Book.findByIdAndDelete(req.params.id);
+        const book = await deleteBook(req.params.id);
 
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
