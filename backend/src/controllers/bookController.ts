@@ -1,11 +1,10 @@
 import { Request, Response } from 'express';
-import { Book } from '../models/Book';
-import { createBook, deleteBook, getAllBooks, getBookById, updateBook } from '../services/bookService';
+import { createBookService, deleteBookService, getAllBooksService, getBookByIdService, updateBookService } from '../services/bookService';
 
 // Controller function to get all books
-export const getAll = async (_req: Request, res: Response) => {
+export const getAllBooks = async (_req: Request, res: Response) => {
     try {
-        const books =  await getAllBooks();
+        const books =  await getAllBooksService();
         return res.status(200).json(books);
     } catch (error: any) {
         res.status(500).json({ message: "Error fetching books", error: error.message });
@@ -14,9 +13,10 @@ export const getAll = async (_req: Request, res: Response) => {
 };
 
 // Controller function to get a book by ID
-export const getById = async (req: Request, res: Response) => {
+export const getBookById = async (req: Request, res: Response) => {
     try {
-        const book =  await getBookById(req.params.id);
+        const id = Number(req.params.id);
+        const book =  await getBookByIdService(id);
 
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
@@ -29,9 +29,9 @@ export const getById = async (req: Request, res: Response) => {
 };
 
 // Controller function to create a new book
-export const create = async (req: Request, res: Response) => {
+export const createBook = async (req: Request, res: Response) => {
     try {
-        const book =  await createBook(req.body);
+        const book =  await createBookService(req.body);
         return res.status(201).json(book);
     } catch (error: any) {
         res.status(400).json({ message: "Error creating book", error: error.message });
@@ -39,9 +39,10 @@ export const create = async (req: Request, res: Response) => {
 };
 
 // Controller function to update a book by ID
-export const update = async (req: Request, res: Response) => {
+export const updateBook = async (req: Request, res: Response) => {
     try {
-        const book = await updateBook(req.params.id, req.body);
+        const id = Number(req.params.id);
+        const book = await updateBookService(id, req.body);
 
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
@@ -54,9 +55,10 @@ export const update = async (req: Request, res: Response) => {
 };
 
 // Controller function to delete a book by ID
-export const deleteById = async (req: Request, res: Response) => {
+export const deleteBook = async (req: Request, res: Response) => {
     try {
-        const book = await deleteBook(req.params.id);
+        const id = Number(req.params.id);
+        const book = await deleteBookService(id);
 
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
