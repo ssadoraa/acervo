@@ -1,4 +1,4 @@
-import { Container, Navbar } from "react-bootstrap";
+import { Container, Navbar, NavDropdown } from "react-bootstrap";
 
 export default function Header() {
     return (
@@ -10,6 +10,10 @@ export default function Header() {
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
+
+                <NavDropdown title="Livros" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/book/new">Cadastrar</NavDropdown.Item>
+                </NavDropdown>
                     
                 </Navbar.Collapse>
             </Container>
