@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bookRouter from './routes/bookRouter';
+import categoryRouter from './routes/categoryRouter';
 
 const app = express();
 
@@ -14,12 +15,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// Test route
-app.get('/', (req, res) => {
-  res.json({ message: 'Bem-vindo ao servidor!' });
-});
-
 // Routes
 app.use('/books', bookRouter);
+app.use('/categories', categoryRouter)
 
 export default app;

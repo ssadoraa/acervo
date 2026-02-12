@@ -1,6 +1,7 @@
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import { BookFormData } from "../types/BookFormData";
 import { useEffect, useState } from "react";
+import { useCategories } from "../hooks/useCategories";
 
 interface BookFormProps {
     onSubmit: (book: BookFormData) => void;
@@ -18,6 +19,8 @@ export default function BookForm({ onSubmit, loading, initialData }: BookFormPro
         publicationYear: new Date().getFullYear(),
         totalQuantity: 1,
     });
+
+    const { categories, loading: loadingCategories } = useCategories();
 
     // Updates the form when initialData changes (EditBook)
     useEffect(() => {
@@ -88,11 +91,9 @@ export default function BookForm({ onSubmit, loading, initialData }: BookFormPro
 
                     <Form.Group as={Col} controlId="category">
                         <Form.Label>Categoria</Form.Label>
-                        <Form.Select name="category"  value={form.category} onChange={handleChange} required>
-                            <option value="" disabled>Selecione a categoria do livro</option>
-                            <option value="1">Categoria 1</option>
-                            <option value="2">Categoria 2</option>
-                            <option value="3">Categoria 3</option>
+                        <Form.Select name="category" value={form.category} onChange={handleChange} >
+                        <option value="" disabled>{loadingCategories ? "Carregando..." : "Selecione a categoria do livro"}</option>
+                        {!loadingCategories && categories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
                         </Form.Select>
                     </Form.Group>
                 </Row>
@@ -100,15 +101,17 @@ export default function BookForm({ onSubmit, loading, initialData }: BookFormPro
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="publicationYear">
                         <Form.Label>Ano de Publicação</Form.Label>
-                        <Form.Control name="publicationYear" type="number" value={form.publicationYear} onChange={handleChange} required
-                            min={1000} max={new Date().getFullYear()} placeholder="Informe o ano de publicação do livro"
-                        />
+                        <Form.Control as="select" name="publicationYear" value={form.publicationYear} onChange={handleChange} required>
+                            {Array.from({ length: new Date().getFullYear() - 1000 + 1 }, (_, i) => new Date().getFullYear() - i).map(year => (
+                                <option key={year} value={year}>{year}</option>
+                            ))}
+                        </Form.Control>
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="totalQuantity">
                         <Form.Label>Quantidade</Form.Label>
                         <Form.Control name="totalQuantity" type="number" value={form.totalQuantity} onChange={handleChange} required
-                            min={0} placeholder="Informe a quantidade de livros"
+                            min={1} placeholder="Informe a quantidade de livros"
                         />
                     </Form.Group>
                 </Row>
