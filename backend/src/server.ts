@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-import app from './app.js';
-import connectDB from './configs/database.js';
+import app from './app';
+import connectDB from './configs/database';
 
 dotenv.config();
 
@@ -11,5 +11,5 @@ connectDB();
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+  console.log(`\n--> Servidor rodando na porta ${port}\n`);
 });

@@ -15,8 +15,7 @@ export const getAllBooks = async (_req: Request, res: Response) => {
 // Controller function to get a book by ID
 export const getBookById = async (req: Request, res: Response) => {
     try {
-        const id = Number(req.params.id);
-        const book =  await getBookByIdService(id);
+        const book =  await getBookByIdService(req.params.id as string);
 
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
@@ -41,8 +40,7 @@ export const createBook = async (req: Request, res: Response) => {
 // Controller function to update a book by ID
 export const updateBook = async (req: Request, res: Response) => {
     try {
-        const id = Number(req.params.id);
-        const book = await updateBookService(id, req.body);
+        const book = await updateBookService(req.params.id as string, req.body);
 
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
@@ -57,8 +55,7 @@ export const updateBook = async (req: Request, res: Response) => {
 // Controller function to delete a book by ID
 export const deleteBook = async (req: Request, res: Response) => {
     try {
-        const id = Number(req.params.id);
-        const book = await deleteBookService(id);
+        const book = await deleteBookService(req.params.id as string);
 
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
