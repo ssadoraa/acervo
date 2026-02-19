@@ -1,9 +1,9 @@
 import { Table } from "react-bootstrap";
 import { Book } from "../types/Book";
 import SearchTable from "./SearchTable";
-import { useEffect, useState } from "react";
 import { TypeSearch } from "../enum/TypeSearch";
 import PaginationTable from "./PaginationTable";
+import { useBookTable } from "../hooks/useBookTable";
 
 interface BookTableProps {
 	data: Book[];
@@ -12,43 +12,14 @@ interface BookTableProps {
 
 export default function BookTable({ data, loading }: BookTableProps) {
 
-	const [searchType, setSearchType] = useState<TypeSearch | "">("");
-	const [searchValue, setSearchValue] = useState<string>("");
-	const [currentPage, setCurrentPage] = useState(1);
-	
+	const {
+		setSearchType, setSearchValue, currentPage, setCurrentPage, paginatedData, totalPages
+	} = useBookTable(data);
+
 	const handleSearchChange = (type: TypeSearch | "", value: string) => {
 		setSearchType(type);
 		setSearchValue(value);
-	};
-	
-	const filteredData = data.filter((book) => {
-		if (!searchType || !searchValue) return true;
-
-		switch (searchType) {
-			case TypeSearch.TITULO:
-				return book.title.toLowerCase().includes(searchValue.toLowerCase());
-			case TypeSearch.AUTOR:
-				return book.author.toLowerCase().includes(searchValue.toLowerCase());
-			case TypeSearch.EDITORA:
-				return book.publisher.toLowerCase().includes(searchValue.toLowerCase());
-			case TypeSearch.ANO:
-				return String(book.publicationYear).includes(searchValue);
-			case TypeSearch.CATEGORIA:
-				return book.category === searchValue;
-			default:
-				return true;
-		}
-	});
-	
-	const itemsPerPage = 10;
-	const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-	const startIndex = (currentPage - 1) * itemsPerPage;
-	const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
-
-	useEffect(() => {
-		setCurrentPage(1);
-	}, [searchType, searchValue]);
-
+	}
 
 	return (
 		<main>
