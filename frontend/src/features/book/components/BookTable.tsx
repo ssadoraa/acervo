@@ -1,8 +1,9 @@
 import { Table } from "react-bootstrap";
 import { Book } from "../types/Book";
 import SearchTable from "./SearchTable";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TypeSearch } from "../enum/TypeSearch";
+import PaginationTable from "./PaginationTable";
 
 interface BookTableProps {
 	data: Book[];
@@ -13,12 +14,13 @@ export default function BookTable({ data, loading }: BookTableProps) {
 
 	const [searchType, setSearchType] = useState<TypeSearch | "">("");
 	const [searchValue, setSearchValue] = useState<string>("");
-
+	const [currentPage, setCurrentPage] = useState(1);
+	
 	const handleSearchChange = (type: TypeSearch | "", value: string) => {
 		setSearchType(type);
 		setSearchValue(value);
 	};
-
+	
 	const filteredData = data.filter((book) => {
 		if (!searchType || !searchValue) return true;
 
@@ -37,10 +39,21 @@ export default function BookTable({ data, loading }: BookTableProps) {
 				return true;
 		}
 	});
+	
+	const itemsPerPage = 10;
+	const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+	const startIndex = (currentPage - 1) * itemsPerPage;
+	const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
+
+	useEffect(() => {
+		setCurrentPage(1);
+	}, [searchType, searchValue]);
+
 
 	return (
 		<main>
 			<SearchTable onSearchChange={handleSearchChange} />
+
 			<Table striped bordered hover responsive>
 				<thead>
 					<tr>
@@ -58,12 +71,12 @@ export default function BookTable({ data, loading }: BookTableProps) {
 						<tr>
 							<td colSpan={6} className="text-center">Carregando</td>
 						</tr>
-					) : filteredData.length === 0 ? (
+					) : paginatedData.length === 0 ? (
 						<tr>
 							<td colSpan={6} className="text-center">Nenhum livro encontrado.</td>
 						</tr>
 					) : (
-						filteredData.map((book) => (
+						paginatedData.map((book) => (
 							<tr key={book.id}>
 								<td>{book.isbn}</td>
 								<td>{book.title}</td>
@@ -76,6 +89,8 @@ export default function BookTable({ data, loading }: BookTableProps) {
 					)}
 				</tbody>
 			</Table>
+
+			<PaginationTable currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
 		</main>
 	);
 }
