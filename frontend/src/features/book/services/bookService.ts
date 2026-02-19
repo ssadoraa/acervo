@@ -1,5 +1,5 @@
 import { api } from "../../../shared/service/api";
-import { BookFormData } from "../types/BookFormData";
+import { BookFormData } from "../types/Book";
 
 export function getAll() {
     return api.get(`/books`);

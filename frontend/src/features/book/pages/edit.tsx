@@ -1,6 +1,6 @@
 import { Alert, Container, Spinner } from "react-bootstrap";
 import BookForm from "../components/BookForm";
-import { BookFormData } from "../types/BookFormData";
+import { BookFormData } from "../types/Book";
 import { useBook } from "../hooks/useBook";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";

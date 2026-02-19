@@ -1,5 +1,5 @@
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
-import { BookFormData } from "../types/BookFormData";
+import { BookFormData } from "../types/Book";
 import { useEffect, useState } from "react";
 import { useCategories } from "../hooks/useCategories";
 
@@ -92,8 +92,8 @@ export default function BookForm({ onSubmit, loading, initialData }: BookFormPro
                     <Form.Group as={Col} controlId="category">
                         <Form.Label>Categoria</Form.Label>
                         <Form.Select name="category" value={form.category} onChange={handleChange} >
-                        <option value="" disabled>{loadingCategories ? "Carregando..." : "Selecione a categoria do livro"}</option>
-                        {!loadingCategories && categories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
+                            <option value="" disabled>{loadingCategories ? "Carregando..." : "Selecione a categoria do livro"}</option>
+                            {!loadingCategories && categories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
                         </Form.Select>
                     </Form.Group>
                 </Row>
