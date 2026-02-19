@@ -20,17 +20,30 @@ export function useBook() {
 		}
 	}
 
+	// Function for search all books
+	async function getAllBooks() {
+		return await handleRequest(() => bookService.getAll(), "Erro ao recuperar listagem de livros.");
+	}
+
+	// Function for search book
+	async function getBookById(id: string) {
+		return await handleRequest(() => bookService.get(id), "Erro ao recuperar livro pelo id.");
+	}
+	
+	// Function for create book
 	async function createBook(data: BookFormData) {
 		return await handleRequest(() => bookService.create(data), "Erro ao cadastrar livro");
 	}
 
+	// Function for edit book
 	async function editBook(id: string, data: BookFormData) {
 		return await handleRequest(() => bookService.edit({ ...data, id }), "Erro ao editar livro");
 	}
 
-	async function getBookById(id: string) {
-		return await handleRequest(() => bookService.getBook(id), "Erro ao recuperar livro pelo id.");
+	// Function for delete book
+	async function deleteBook(id: string) {
+		return await handleRequest(() => bookService.deleteB(id), "Erro ao deletar livro")
 	}
 
-	return { createBook, editBook, getBookById, loading, error };
+	return { createBook, editBook, getBookById, deleteBook, getAllBooks, loading, error };
 }
