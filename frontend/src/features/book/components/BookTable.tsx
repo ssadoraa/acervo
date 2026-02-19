@@ -1,5 +1,8 @@
 import { Table } from "react-bootstrap";
-import { Book } from "../types/BookFormData";
+import { Book } from "../types/Book";
+import SearchTable from "./SearchTable";
+import { useState } from "react";
+import { TypeSearch } from "../enum/TypeSearch";
 
 interface BookTableProps {
 	data: Book[];
@@ -8,16 +11,44 @@ interface BookTableProps {
 
 export default function BookTable({ data, loading }: BookTableProps) {
 
+	const [searchType, setSearchType] = useState<TypeSearch | "">("");
+	const [searchValue, setSearchValue] = useState<string>("");
+
+	const handleSearchChange = (type: TypeSearch | "", value: string) => {
+		setSearchType(type);
+		setSearchValue(value);
+	};
+
+	const filteredData = data.filter((book) => {
+		if (!searchType || !searchValue) return true;
+
+		switch (searchType) {
+			case TypeSearch.TITULO:
+				return book.title.toLowerCase().includes(searchValue.toLowerCase());
+			case TypeSearch.AUTOR:
+				return book.author.toLowerCase().includes(searchValue.toLowerCase());
+			case TypeSearch.EDITORA:
+				return book.publisher.toLowerCase().includes(searchValue.toLowerCase());
+			case TypeSearch.ANO:
+				return String(book.publicationYear).includes(searchValue);
+			case TypeSearch.CATEGORIA:
+				return book.category === searchValue;
+			default:
+				return true;
+		}
+	});
+
 	return (
 		<main>
-			<Table striped bordered hover>
+			<SearchTable onSearchChange={handleSearchChange} />
+			<Table striped bordered hover responsive>
 				<thead>
 					<tr>
-						<th>#</th>
+						<th>ISBN</th>
 						<th>Título</th>
 						<th>Autor</th>
-						<th>Ano Publicação</th>
-						<th>Quantidade</th>
+						<th>Ano</th>
+						<th>Qtd</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -27,12 +58,12 @@ export default function BookTable({ data, loading }: BookTableProps) {
 						<tr>
 							<td colSpan={6} className="text-center">Carregando</td>
 						</tr>
-					) : data.length === 0 ? (
+					) : filteredData.length === 0 ? (
 						<tr>
 							<td colSpan={6} className="text-center">Nenhum livro encontrado.</td>
 						</tr>
 					) : (
-						data.map((book) => (
+						filteredData.map((book) => (
 							<tr key={book.id}>
 								<td>{book.isbn}</td>
 								<td>{book.title}</td>
