@@ -45,5 +45,9 @@ export function useBook() {
 		return await handleRequest(() => bookService.deleteB(id), "Erro ao deletar livro")
 	}
 
-	return { createBook, editBook, getBookById, deleteBook, getAllBooks, loading, error };
+	async function activateDeactivateBook(id: string) {
+		return await handleRequest(() => bookService.activateDeactivate(id), "Erro ao ativar/desativar livro")
+	}
+
+	return { createBook, editBook, getBookById, deleteBook, getAllBooks, activateDeactivateBook, loading, error };
 }

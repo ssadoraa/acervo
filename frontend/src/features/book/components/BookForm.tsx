@@ -17,6 +17,7 @@ export default function BookForm({ onSubmit, loading, initialData }: BookFormPro
         isbn: "",
         category: "",
         publicationYear: new Date().getFullYear(),
+        active: true,
         totalQuantity: 1,
     });
 
@@ -53,6 +54,7 @@ export default function BookForm({ onSubmit, loading, initialData }: BookFormPro
             isbn: "",
             category: "",
             publicationYear: new Date().getFullYear(),
+            active: true,
             totalQuantity: 1,
         });
     }

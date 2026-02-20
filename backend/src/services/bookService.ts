@@ -19,3 +19,13 @@ export const updateBookService = async (id: string, book: any) => {
 export const deleteBookService = async (id: string) => {
     return await Book.findByIdAndDelete(id);
 };
+
+export const toggleActiveBookService = async (id: string) => {
+    const book = await getBookByIdService(id);
+    if (!book) throw new Error("Book not found");
+
+    book.active = !book.active;
+    await book.save();
+
+    return book;
+};

@@ -9,6 +9,7 @@ interface IBook extends Document {
     publisher: string;
     publicationYear: number;
     totalQuantity: number;
+    active: boolean;
     insertAt?: Date;
 }
 
@@ -20,6 +21,7 @@ const bookSchema = new Schema<IBook>(
     category: { type: String, enum: Object.values(Category), required: true },
     publisher: { type: String, required: true },
     publicationYear: { type: Number, required: true },
+    active: { type: Boolean, required: true },
     totalQuantity: { type: Number, required: true }
   },
   { timestamps: { createdAt: "insertAt" } }

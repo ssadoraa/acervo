@@ -20,3 +20,6 @@ export function edit(book: BookFormData & { id: string }) {
 export function deleteB(id: string) {
     return api.delete(`/books/${id}`);
 }
+
+export function activateDeactivate(id: string) {
+    return api.patch(`/book/${id}/toggle`)}

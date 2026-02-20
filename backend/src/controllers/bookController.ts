@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createBookService, deleteBookService, getAllBooksService, getBookByIdService, updateBookService } from '../services/bookService';
+import { toggleActiveBookService, createBookService, deleteBookService, getAllBooksService, getBookByIdService, updateBookService } from '../services/bookService';
 
 // Controller function to get all books
 export const getAllBooks = async (_req: Request, res: Response) => {
@@ -64,5 +64,17 @@ export const deleteBook = async (req: Request, res: Response) => {
         return res.status(200).json({ message: "Book deleted successfully" });
     } catch (error: any) {
         res.status(500).json({ message: "Error deleting book", error: error.message });
+    }
+};
+
+// Controller function to activate ou deactivate a book by ID
+export const toggleActiveBook = async (req: Request, res: Response) => {
+    try {
+        const book = await toggleActiveBookService(req.params.id as string);
+        const message = book.active ? "Book activated" : "Book deactivated";
+        
+        return res.status(200).json({ message });
+    } catch (error: any) {
+        return res.status(400).json({ message: "Error toggling book", error: error.message });
     }
 };
