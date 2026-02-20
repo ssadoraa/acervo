@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import CreateBook from "../../features/book/pages/new";
 import EditBook from "../../features/book/pages/edit";
 import ListBooks from "../../features/book/pages/list";
+import GetBook from "../../features/book/pages/get";
 
 export default function AppRoutes() {
     return (
@@ -13,6 +14,7 @@ export default function AppRoutes() {
                 <Route path="/book" element={<ListBooks />} />
                 <Route path="/book/new" element={<CreateBook />} />
                 <Route path="/book/edit/:id" element={<EditBook />} />
+                <Route path="/book/:id" element={<GetBook />} />
             </Route>
         </Routes>
     )

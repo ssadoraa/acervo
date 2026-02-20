@@ -1,9 +1,10 @@
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { Book } from "../types/Book";
 import SearchTable from "./SearchTable";
 import { TypeSearch } from "../enum/TypeSearch";
 import PaginationTable from "./PaginationTable";
 import { useBookTable } from "../hooks/useBookTable";
+import { Pencil } from "react-bootstrap-icons";
 
 interface BookTableProps {
 	data: Book[];
@@ -50,11 +51,15 @@ export default function BookTable({ data, loading }: BookTableProps) {
 						paginatedData.map((book) => (
 							<tr key={book.id}>
 								<td>{book.isbn}</td>
-								<td>{book.title}</td>
+								<td><a href={`/book/${book.id}`} className="text-black">{book.title}</a></td>
 								<td>{book.author}</td>
 								<td>{book.publicationYear}</td>
 								<td>{book.totalQuantity}</td>
-								<td>Action</td>
+								<td className="d-flex justify-content-center">
+									<Button className="btn-sm" href={`/book/edit/${book.id}`}>
+										<Pencil />
+									</Button>
+								</td>
 							</tr>
 						))
 					)}
