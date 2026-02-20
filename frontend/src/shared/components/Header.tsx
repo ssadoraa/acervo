@@ -4,7 +4,7 @@ export default function Header() {
     return (
         <Navbar expand="lg" bg="dark" data-bs-theme="dark" className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href="#home" className="me-5">
+                <Navbar.Brand href="/" className="me-5">
                     Acervô
                 </Navbar.Brand>
 

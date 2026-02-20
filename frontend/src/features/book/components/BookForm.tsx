@@ -120,7 +120,7 @@ export default function BookForm({ onSubmit, loading, initialData }: BookFormPro
 
                 <Row className="mt-5">
                     <Col>
-                        <Button variant="secondary" type="button" onClick={handleReset}>Cancelar</Button>
+                        <Button variant="secondary" type="button" onClick={handleReset} href="/book">Cancelar</Button>
                     </Col>
                     <Col className="text-end">
                         <Button variant="success" type="submit" disabled={loading}>
