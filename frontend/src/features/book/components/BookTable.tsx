@@ -46,9 +46,9 @@ export default function BookTable({ data, loading }: BookTableProps) {
 						</tr>
 					) : (
 						paginatedData.map((book) => (
-							<tr key={book.id}>
+							<tr key={book._id}>
 								<td>{book.isbn}</td>
-								<td><a href={`/book/${book.id}`} className="text-black">{book.title}</a></td>
+								<td><a href={`/books/${book._id}`} className="text-black">{book.title}</a></td>
 								<td>{book.author}</td>
 								<td className="text-center">
 									<Badge 
@@ -62,7 +62,7 @@ export default function BookTable({ data, loading }: BookTableProps) {
 									</Badge>
 								</td>								
 								<td className="d-flex justify-content-center gap-3">
-										<Button className="btn-sm" href={`/book/edit/${book.id}`}>
+										<Button className="btn-sm" href={`/books/edit/${book._id}`}>
 											<Pencil />
 										</Button>
 								</td>

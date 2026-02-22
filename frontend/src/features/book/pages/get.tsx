@@ -20,7 +20,7 @@ export default function GetBook() {
 			}
 		}
 		fetchBooks();
-	}, [getBookById, id]);
+	}, [id]);
 
 	return (
 		<Container>

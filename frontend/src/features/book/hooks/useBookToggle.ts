@@ -10,10 +10,10 @@ export default function useBookToggle(onToggle: (id: string) => Promise<any>, da
         if (!data) return;
 
         if (data.active && !checked) {
-            setPendingId(data.id);
+            setPendingId(data._id);
             setShowConfirm(true);
         } else {
-            onToggle(data.id);
+            onToggle(data._id);
         }
     };
 

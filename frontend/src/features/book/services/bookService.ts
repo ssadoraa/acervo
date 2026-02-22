@@ -22,4 +22,4 @@ export function deleteB(id: string) {
 }
 
 export function activateDeactivate(id: string) {
-    return api.patch(`/book/${id}/toggle`)}
+    return api.patch(`/books/${id}/toggle`)}

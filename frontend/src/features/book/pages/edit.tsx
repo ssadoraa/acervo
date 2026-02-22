@@ -30,7 +30,7 @@ export default function EditBook() {
 		}
 
 		loadBook();
-	}, [id, getBookById]);
+	}, [id]);
 
 
 	async function handleSubmit(formData: BookFormData) {

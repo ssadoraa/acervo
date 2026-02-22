@@ -11,10 +11,10 @@ export default function AppRoutes() {
         <Routes>
             <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
-                <Route path="/book" element={<ListBooks />} />
-                <Route path="/book/new" element={<CreateBook />} />
-                <Route path="/book/edit/:id" element={<EditBook />} />
-                <Route path="/book/:id" element={<GetBook />} />
+                <Route path="/books" element={<ListBooks />} />
+                <Route path="/books/new" element={<CreateBook />} />
+                <Route path="/books/edit/:id" element={<EditBook />} />
+                <Route path="/books/:id" element={<GetBook />} />
             </Route>
         </Routes>
     )

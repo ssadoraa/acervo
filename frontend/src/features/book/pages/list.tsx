@@ -15,7 +15,7 @@ export default function ListBooks() {
       		if (data?.data) setBooks(data.data);
     	}
     	fetchBooks();
-  	}, [getAllBooks]);
+  	}, []);
 
 	// Filter books by state
 	const activeBooks = books.filter((b) => b.active === true);

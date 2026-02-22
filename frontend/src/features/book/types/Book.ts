@@ -1,5 +1,5 @@
 export interface Book {
-    id: string;
+    _id: string;
     title: string;
     author: string;
     publisher: string;
@@ -11,4 +11,4 @@ export interface Book {
 }
 
 // Create a new book type excluding the ID
-export type BookFormData = Omit<Book, "id">;
+export type BookFormData = Omit<Book, "_id">;

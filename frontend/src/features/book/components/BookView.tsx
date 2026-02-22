@@ -80,7 +80,7 @@ export default function BookView({ data, loading, onToggleActivate }: BookViewPr
 						</Form.Group>
 					</Col>
 					<Col xs="auto">
-						<Button variant="secondary" href="/book">Voltar</Button>
+						<Button variant="secondary" href="/books">Voltar</Button>
 					</Col>
 				</Row>
 			</Form>
