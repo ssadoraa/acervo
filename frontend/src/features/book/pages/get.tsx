@@ -1,5 +1,5 @@
 import { Alert, Container } from "react-bootstrap";
-import { Book } from "../types/Book";
+import { Book } from "../../../shared/types/Book";
 import { useBook } from "../hooks/useBook";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";

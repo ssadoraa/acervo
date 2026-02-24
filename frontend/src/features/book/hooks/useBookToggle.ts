@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Book } from "../types/Book";
+import { Book } from "../../../shared/types/Book";
 
 export default function useBookToggle(onToggle: (id: string) => Promise<any>, data: Book | null) {
     const [showConfirm, setShowConfirm] = useState(false);

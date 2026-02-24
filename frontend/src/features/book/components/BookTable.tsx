@@ -1,5 +1,5 @@
 import { Badge, Button, Table } from "react-bootstrap";
-import { Book } from "../types/Book";
+import { Book } from "../../../shared/types/Book";
 import SearchTable from "./SearchTable";
 import { TypeSearch } from "../enum/TypeSearch";
 import PaginationTable from "./PaginationTable";

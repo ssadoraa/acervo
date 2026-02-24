@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Book } from "../types/Book";
+import { Book } from "../../../shared/types/Book";
 import { TypeSearch } from "../enum/TypeSearch";
 
 export function useBookTable(data: Book[]) {

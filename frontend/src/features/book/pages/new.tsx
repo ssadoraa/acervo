@@ -1,6 +1,6 @@
 import { Alert, Container } from "react-bootstrap";
 import BookForm from "../components/BookForm";
-import { BookFormData } from "../types/Book";
+import { BookFormData } from "../../../shared/types/Book";
 import { useBook } from "../hooks/useBook";
 
 export default function CreateBook() {

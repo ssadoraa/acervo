@@ -1,5 +1,5 @@
 import { Alert, Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
-import { Book } from "../types/Book";
+import { Book } from "../../../shared/types/Book";
 import useBookToggle from "../hooks/useBookToggle";
 import ModalStatus from "./ModalStatus";
 

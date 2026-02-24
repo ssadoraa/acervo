@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BookFormData } from "../types/Book";
+import { BookFormData } from "../../../shared/types/Book";
 import * as bookService from "../services/bookService";
 
 export function useBook() {

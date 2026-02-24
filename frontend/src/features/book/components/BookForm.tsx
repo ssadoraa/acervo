@@ -1,5 +1,5 @@
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
-import { BookFormData } from "../types/Book";
+import { BookFormData } from "../../../shared/types/Book";
 import { useEffect, useState } from "react";
 import { useCategories } from "../hooks/useCategories";
 

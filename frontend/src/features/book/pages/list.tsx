@@ -2,7 +2,7 @@ import { Alert, Container, Tab, Tabs } from "react-bootstrap";
 import { useBook } from "../hooks/useBook";
 import { useState, useEffect } from "react";
 import BookTable from "../components/BookTable";
-import { Book } from "../types/Book";
+import { Book } from "../../../shared/types/Book";
 
 export default function ListBooks() {
 	const { getAllBooks, loading, error } = useBook();
