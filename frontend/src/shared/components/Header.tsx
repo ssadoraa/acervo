@@ -12,8 +12,13 @@ export default function Header() {
                 <Navbar.Collapse id="basic-navbar-nav">
 
                 <NavDropdown title="Livros" id="basic-nav-dropdown" className="text-white">
-                    <NavDropdown.Item href="/book">Listar todos</NavDropdown.Item>
-                    <NavDropdown.Item href="/book/new">Cadastrar</NavDropdown.Item>
+                    <NavDropdown.Item href="/books">Listar todos</NavDropdown.Item>
+                    <NavDropdown.Item href="/books/new">Cadastrar</NavDropdown.Item>
+                </NavDropdown>
+                
+                <NavDropdown title="Usuários" id="basic-nav-dropdown" className="text-white">
+                    <NavDropdown.Item href="/users">Listar todos</NavDropdown.Item>
+                    <NavDropdown.Item href="/users/new">Cadastrar</NavDropdown.Item>
                 </NavDropdown>
                     
                 </Navbar.Collapse>
