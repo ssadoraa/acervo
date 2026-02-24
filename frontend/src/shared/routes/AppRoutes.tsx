@@ -25,6 +25,12 @@ export default function AppRoutes() {
                 <Route path="/users/new" element={<CreateUser />} />
                 <Route path="/users/edit/:id" element={<EditUser />} />
                 <Route path="/users/:id" element={<GetUser />} />
+                
+                <Route path="/" element={<Home />} />
+                <Route path="/loans" element={<ListLoans />} />
+                <Route path="/loans/new" element={<CreateUser />} />
+                <Route path="/loans/edit/:id" element={<EditUser />} />
+                <Route path="/loans/:id" element={<GetUser />} />
             </Route>
         </Routes>
     )

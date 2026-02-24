@@ -21,6 +21,11 @@ export default function Header() {
                     <NavDropdown.Item href="/users/new">Cadastrar</NavDropdown.Item>
                 </NavDropdown>
                     
+                <NavDropdown title="Empréstimos" id="basic-nav-dropdown" className="text-white">
+                    <NavDropdown.Item href="/loans">Listar todos</NavDropdown.Item>
+                    <NavDropdown.Item href="/loans/new">Criar</NavDropdown.Item>
+                </NavDropdown>
+                    
                 </Navbar.Collapse>
             </Container>
         </Navbar>
