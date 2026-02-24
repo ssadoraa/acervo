@@ -3,6 +3,7 @@ import cors from 'cors';
 import bookRouter from './routes/bookRouter';
 import categoryRouter from './routes/categoryRouter';
 import userRouter from './routes/userRouter';
+import loanRouter from './routes/loanRouter';
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/books', bookRouter);
 app.use('/users', userRouter);
+app.use('/loans', loanRouter);
 app.use('/categories', categoryRouter)
 
 export default app;
