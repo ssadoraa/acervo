@@ -19,7 +19,7 @@ export default function ListLoans() {
 
   	return (
 		<Container>
-			<h1 className="mb-4 mt-4">Listagem dos Usuários</h1>
+			<h1 className="mb-4 mt-4">Listagem dos Empréstimos</h1>
 			{error && <Alert variant="danger">{error}</Alert>}
 
 			<Tabs defaultActiveKey="ativos" id="loan-tabs" className="mb-3"

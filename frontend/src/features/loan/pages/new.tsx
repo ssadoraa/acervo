@@ -13,7 +13,7 @@ export default function CreateLoan() {
 
 	return (
 	<Container>
-		<h1 className="mb-4 mt-4">Cadastrar Usuário</h1>
+		<h1 className="mb-4 mt-4">Criar Empréstimo</h1>
 		{error && <Alert variant="danger">{error}</Alert>}
 		<LoanForm onSubmit={handleSubmit} loading={loading} />
 	</Container>

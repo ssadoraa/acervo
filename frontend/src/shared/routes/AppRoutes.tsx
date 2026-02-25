@@ -9,28 +9,41 @@ import ListUsers from "../../features/user/pages/list";
 import CreateUser from "../../features/user/pages/new";
 import EditUser from "../../features/user/pages/edit";
 import GetUser from "../../features/user/pages/get";
+import ListLoans from "../../features/loan/pages/list";
+import EditLoan from "../../features/loan/pages/edit";
+import CreateLoan from "../../features/loan/pages/new";
+import GetLoan from "../../features/loan/pages/get";
 
 export default function AppRoutes() {
     return (
         <Routes>
             <Route element={<Layout />}>
+                {/* HOME */}
                 <Route path="/" element={<Home />} />
-                <Route path="/books" element={<ListBooks />} />
-                <Route path="/books/new" element={<CreateBook />} />
-                <Route path="/books/edit/:id" element={<EditBook />} />
-                <Route path="/books/:id" element={<GetBook />} />
+
+                {/* BOOKS */}
+                <Route path="books">
+                    <Route index element={<ListBooks />} />
+                    <Route path="new" element={<CreateBook />} />
+                    <Route path="edit/:id" element={<EditBook />} />
+                    <Route path=":id" element={<GetBook />} />
+                </Route>
+
+                {/* USERS */}
+                <Route path="users">
+                    <Route index element={<ListUsers />} />
+                    <Route path="new" element={<CreateUser />} />
+                    <Route path="edit/:id" element={<EditUser />} />
+                    <Route path=":id" element={<GetUser />} />
+                </Route>
                 
-                <Route path="/" element={<Home />} />
-                <Route path="/users" element={<ListUsers />} />
-                <Route path="/users/new" element={<CreateUser />} />
-                <Route path="/users/edit/:id" element={<EditUser />} />
-                <Route path="/users/:id" element={<GetUser />} />
-                
-                <Route path="/" element={<Home />} />
-                <Route path="/loans" element={<ListLoans />} />
-                <Route path="/loans/new" element={<CreateUser />} />
-                <Route path="/loans/edit/:id" element={<EditUser />} />
-                <Route path="/loans/:id" element={<GetUser />} />
+                {/* LOANS */}
+                <Route path="loans">
+                    <Route index element={<ListLoans />} />
+                    <Route path="new" element={<CreateLoan />} />
+                    <Route path="edit/:id" element={<EditLoan />} />
+                    <Route path=":id" element={<GetLoan />} />
+                </Route>
             </Route>
         </Routes>
     )

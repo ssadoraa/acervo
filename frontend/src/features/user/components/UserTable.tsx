@@ -1,7 +1,7 @@
 import { Button, Table } from "react-bootstrap";
 import SearchTable from "./SearchTable";
 import { TypeSearch } from "../enum/TypeSearch";
-import PaginationTable from "./PaginationTable";
+import PaginationTable from "../../../shared/components/PaginationTable";
 import { Pencil } from "react-bootstrap-icons";
 import { User } from "../../../shared/types/User";
 import { useUserTable } from "../hooks/useUserTable";

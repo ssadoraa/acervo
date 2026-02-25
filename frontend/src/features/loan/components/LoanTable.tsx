@@ -1,10 +1,10 @@
 import { Button, Table } from "react-bootstrap";
 import SearchTable from "./SearchTable";
 import { TypeSearch } from "../enum/TypeSearch";
-import PaginationTable from "./PaginationTable";
 import { Pencil } from "react-bootstrap-icons";
 import { Loan } from "../../../shared/types/Loan";
 import { useLoanTable } from "../hooks/useLoanTable";
+import PaginationTable from "../../../shared/components/PaginationTable";
 
 interface LoanTableProps {
 	data: Loan[];
