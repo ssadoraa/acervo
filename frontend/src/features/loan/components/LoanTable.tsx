@@ -1,9 +1,9 @@
 import { Button, Table } from "react-bootstrap";
-import SearchTable from "../../../shared/components/SearchTable";
+import SearchTable from "../../../shared/components/table/SearchTable";
 import { Pencil } from "react-bootstrap-icons";
 import { Loan } from "../../../shared/types/Loan";
 import { useLoanTable } from "../hooks/useLoanTable";
-import PaginationTable from "../../../shared/components/PaginationTable";
+import PaginationTable from "../../../shared/components/table/PaginationTable";
 import { searchOptionsLoan } from "../enum/TypeSearchLoan";
 
 interface LoanTableProps {

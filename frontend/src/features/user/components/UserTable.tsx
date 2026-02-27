@@ -1,9 +1,9 @@
 import { Button, Table } from "react-bootstrap";
-import PaginationTable from "../../../shared/components/PaginationTable";
+import PaginationTable from "../../../shared/components/table/PaginationTable";
 import { Pencil } from "react-bootstrap-icons";
 import { User } from "../../../shared/types/User";
 import { useUserTable } from "../hooks/useUserTable";
-import SearchTable from "../../../shared/components/SearchTable";
+import SearchTable from "../../../shared/components/table/SearchTable";
 import { searchOptionsUser } from "../enum/TypeSearchUser";
 
 interface UserTableProps {

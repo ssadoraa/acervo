@@ -1,9 +1,9 @@
 import { Badge, Button, Table } from "react-bootstrap";
 import { Book } from "../../../shared/types/Book";
-import SearchTable from "../../../shared/components/SearchTable";
+import SearchTable from "../../../shared/components/table/SearchTable";
 import { useBookTable } from "../hooks/useBookTable";
 import { Pencil } from "react-bootstrap-icons";
-import PaginationTable from "../../../shared/components/PaginationTable";
+import PaginationTable from "../../../shared/components/table/PaginationTable";
 import { searchOptionsBook } from "../enum/TypeSearchBook";
 
 interface BookTableProps {

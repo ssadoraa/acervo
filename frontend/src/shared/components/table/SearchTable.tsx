@@ -1,7 +1,7 @@
 import { Col, Form, Row } from "react-bootstrap";
-import { useCategories } from "../../features/book/hooks/useCategories";
+import { useCategories } from "../../../features/book/hooks/useCategories";
 import React, { useState } from "react";
-import { TypeSearchBook } from "../../features/book/enum/TypeSearchBook";
+import { TypeSearchBook } from "../../../features/book/enum/TypeSearchBook";
 
 interface SearchType {
     label: string;
