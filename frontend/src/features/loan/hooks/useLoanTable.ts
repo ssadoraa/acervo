@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import { TypeSearch } from "../enum/TypeSearch";
 import { Loan } from "../../../shared/types/Loan";
+import { TypeSearchLoan } from "../enum/TypeSearchLoan";
 
 export function useLoanTable(data: Loan[]) {
-    const [searchType, setSearchType] = useState<TypeSearch | "">("");
+    const [searchType, setSearchType] = useState<string>("");
     const [searchValue, setSearchValue] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -14,7 +14,7 @@ export function useLoanTable(data: Loan[]) {
             if (!searchType || !searchValue) return true;
 
             switch (searchType) {
-                case TypeSearch.NOME:
+                case TypeSearchLoan.Nome:
                     return loan.userId.toLowerCase().includes(searchValue.toLowerCase());
                 default:
                     return true;

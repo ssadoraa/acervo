@@ -1,10 +1,10 @@
 import { Badge, Button, Table } from "react-bootstrap";
 import { Book } from "../../../shared/types/Book";
-import SearchTable from "./SearchTable";
-import { TypeSearch } from "../enum/TypeSearch";
+import SearchTable from "../../../shared/components/SearchTable";
 import { useBookTable } from "../hooks/useBookTable";
 import { Pencil } from "react-bootstrap-icons";
 import PaginationTable from "../../../shared/components/PaginationTable";
+import { searchOptionsBook } from "../enum/TypeSearchBook";
 
 interface BookTableProps {
 	data: Book[];
@@ -15,14 +15,14 @@ export default function BookTable({ data, loading }: BookTableProps) {
 
 	const { setSearchType, setSearchValue, currentPage, setCurrentPage, paginatedData, totalPages } = useBookTable(data);
 
-	const handleSearchChange = (type: TypeSearch | "", value: string) => {
+	const handleSearchChange = (type: string, value: string) => {
 		setSearchType(type);
 		setSearchValue(value);
 	}
 
 	return (
 		<main>
-			<SearchTable onSearchChange={handleSearchChange} />
+			<SearchTable onSearchChange={handleSearchChange} searchTypes={searchOptionsBook} />
 
 			<Table striped bordered hover responsive>
 				<thead>

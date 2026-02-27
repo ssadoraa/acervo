@@ -1,20 +1,27 @@
 import { Col, Form, Row } from "react-bootstrap";
-import { TypeSearch } from "../enum/TypeSearch";
-import { useCategories } from "../hooks/useCategories";
+import { useCategories } from "../../features/book/hooks/useCategories";
 import React, { useState } from "react";
+import { TypeSearchBook } from "../../features/book/enum/TypeSearchBook";
 
-interface SearchTableProps {
-    onSearchChange: (type: TypeSearch | "", value: string) => void;
+interface SearchType {
+    label: string;
+    value: string;
+    placeholder: string;
 }
 
-export default function SearchTable({ onSearchChange } : SearchTableProps){
+interface SearchTableProps {
+    onSearchChange: (type: string, value: string) => void;
+    searchTypes: SearchType[];
+}
 
-    const [selected, setSelected] = useState<TypeSearch | "">("");
+export default function SearchTable({ onSearchChange, searchTypes } : SearchTableProps){
+
+    const [selected, setSelected] = useState<string>("");
     const [search, setSearch] = useState<string>("");
     const { categories, loading: loadingCategories } = useCategories();
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const value = event.target.value as TypeSearch;
+        const value = event.target.value;
         setSelected(value);
         setSearch("");
         onSearchChange(value, "");
@@ -33,22 +40,24 @@ export default function SearchTable({ onSearchChange } : SearchTableProps){
                     <Form.Group as={Col} md={4} controlId="typeSearch">
                         <Form.Select name="typeSearch" value={selected} onChange={handleChange}>
                             <option value="" disabled>Selecione o tipo de pesquisa...</option>
-                            {Object.values(TypeSearch).map((value) => (
-                                <option key={value} value={value}>{value}</option>
+                            {searchTypes.map((type) => (
+                                <option key={type.value} value={type.value}>{type.label}</option>
                             ))}
                         </Form.Select>
                     </Form.Group>
 
-                    {selected && selected !== TypeSearch.CATEGORIA && (
+                    {selected && selected !== TypeSearchBook.Categoria && (
                         <Form.Group as={Col} md={8} controlId="valueSearch" onChange={handleResult}>
-                            <Form.Control name="valueSearch" type="text" value={search} placeholder="Digite o termo de pesquisa"/>
+                            <Form.Control name="valueSearch" type="text" value={search} 
+                                          placeholder={selected ? searchTypes.find(t => t.value === selected)?.placeholder : ''}
+                            />
                         </Form.Group>
                     )}
 
-                    {selected === TypeSearch.CATEGORIA && (
+                    {selected === TypeSearchBook.Categoria && (
                         <Form.Group as={Col} md={8} controlId="categoriaSelect">
                             <Form.Select name="categoriaSelect" value={search} onChange={handleResult}>
-                                <option value="" disabled>{loadingCategories ? "Carregando..." : "Selecione a categoria"}</option>
+                                <option value="" disabled>{loadingCategories ? "Carregando..." : "Procure pela categoria..."}</option>
                                 {!loadingCategories && categories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
                             </Form.Select>
                         </Form.Group>

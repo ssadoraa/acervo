@@ -1,10 +1,10 @@
 import { Button, Table } from "react-bootstrap";
-import SearchTable from "./SearchTable";
-import { TypeSearch } from "../enum/TypeSearch";
 import PaginationTable from "../../../shared/components/PaginationTable";
 import { Pencil } from "react-bootstrap-icons";
 import { User } from "../../../shared/types/User";
 import { useUserTable } from "../hooks/useUserTable";
+import SearchTable from "../../../shared/components/SearchTable";
+import { searchOptionsUser } from "../enum/TypeSearchUser";
 
 interface UserTableProps {
 	data: User[];
@@ -15,14 +15,14 @@ export default function UserTable({ data, loading }: UserTableProps) {
 
 	const { setSearchType, setSearchValue, currentPage, setCurrentPage, paginatedData, totalPages } = useUserTable(data);
 
-	const handleSearchChange = (type: TypeSearch | "", value: string) => {
+	const handleSearchChange = (type: string, value: string) => {
 		setSearchType(type);
 		setSearchValue(value);
 	}
 
 	return (
 		<main>
-			<SearchTable onSearchChange={handleSearchChange} />
+			<SearchTable onSearchChange={handleSearchChange} searchTypes={searchOptionsUser} />
 
 			<Table striped bordered hover responsive>
 				<thead>

@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import { TypeSearch } from "../enum/TypeSearch";
 import { User } from "../../../shared/types/User";
+import { TypeSearchUser } from "../enum/TypeSearchUser";
 
 export function useUserTable(data: User[]) {
-    const [searchType, setSearchType] = useState<TypeSearch | "">("");
+    const [searchType, setSearchType] = useState<string>("");
     const [searchValue, setSearchValue] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -14,7 +14,7 @@ export function useUserTable(data: User[]) {
             if (!searchType || !searchValue) return true;
 
             switch (searchType) {
-                case TypeSearch.NOME:
+                case TypeSearchUser.Nome:
                     return user.name.toLowerCase().includes(searchValue.toLowerCase());
                 default:
                     return true;

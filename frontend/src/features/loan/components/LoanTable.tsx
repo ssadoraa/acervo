@@ -1,10 +1,10 @@
 import { Button, Table } from "react-bootstrap";
-import SearchTable from "./SearchTable";
-import { TypeSearch } from "../enum/TypeSearch";
+import SearchTable from "../../../shared/components/SearchTable";
 import { Pencil } from "react-bootstrap-icons";
 import { Loan } from "../../../shared/types/Loan";
 import { useLoanTable } from "../hooks/useLoanTable";
 import PaginationTable from "../../../shared/components/PaginationTable";
+import { searchOptionsLoan } from "../enum/TypeSearchLoan";
 
 interface LoanTableProps {
 	data: Loan[];
@@ -15,14 +15,14 @@ export default function LoanTable({ data, loading }: LoanTableProps) {
 
 	const { setSearchType, setSearchValue, currentPage, setCurrentPage, paginatedData, totalPages } = useLoanTable(data);
 
-	const handleSearchChange = (type: TypeSearch | "", value: string) => {
+	const handleSearchChange = (type: string, value: string) => {
 		setSearchType(type);
 		setSearchValue(value);
 	}
 
 	return (
 		<main>
-			<SearchTable onSearchChange={handleSearchChange} />
+			<SearchTable onSearchChange={handleSearchChange} searchTypes={searchOptionsLoan} />
 
 			<Table striped bordered hover responsive>
 				<thead>

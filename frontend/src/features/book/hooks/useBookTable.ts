@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Book } from "../../../shared/types/Book";
-import { TypeSearch } from "../enum/TypeSearch";
+import { TypeSearchBook } from "../enum/TypeSearchBook";
 
 export function useBookTable(data: Book[]) {
-    const [searchType, setSearchType] = useState<TypeSearch | "">("");
+    const [searchType, setSearchType] = useState<string>("");
     const [searchValue, setSearchValue] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -14,15 +14,15 @@ export function useBookTable(data: Book[]) {
             if (!searchType || !searchValue) return true;
 
             switch (searchType) {
-                case TypeSearch.TITULO:
+                case TypeSearchBook.Titulo:
                     return book.title.toLowerCase().includes(searchValue.toLowerCase());
-                case TypeSearch.AUTOR:
+                case TypeSearchBook.Autor:
                     return book.author.toLowerCase().includes(searchValue.toLowerCase());
-                case TypeSearch.EDITORA:
+                case TypeSearchBook.Editora:
                     return book.publisher.toLowerCase().includes(searchValue.toLowerCase());
-                case TypeSearch.ANO:
+                case TypeSearchBook.Ano:
                     return String(book.publicationYear).includes(searchValue);
-                case TypeSearch.CATEGORIA:
+                case TypeSearchBook.Categoria:
                     return book.category === searchValue;
                 default:
                     return true;
